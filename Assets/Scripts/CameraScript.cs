@@ -13,12 +13,10 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // sumberSuara.clip = clipMusik;
-        // sumberSuara.loop = true;
-        // sumberSuara.volume = 0.8f;
-        // sumberSuara.Play();
-
-        objCamera = transform.Find("Main Camera").gameObject;
+        sumberSuara.clip = clipMusik;
+        sumberSuara.loop = true;
+        sumberSuara.volume = 0.8f;
+        sumberSuara.Play();
     }
 
 
@@ -26,22 +24,6 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "areaMusuh")
-        {
-            objCamera.SendMessage("rubahMusik1");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.name == "areaMusuh")
-        {
-            objCamera.SendMessage("rubahMusik2");
-        }
     }
 
     public void rubahMusik1()

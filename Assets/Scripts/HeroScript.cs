@@ -4,10 +4,27 @@ using UnityEngine;
 
 public class HeroScript : MonoBehaviour
 {
+    GameObject objCamera;
     // Start is called before the first frame update
     void Start()
     {
+        objCamera = transform.Find("Main Camera").gameObject;
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "areaMusuh")
+        {
+            objCamera.SendMessage("rubahMusik1");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "areaMusuh")
+        {
+            objCamera.SendMessage("rubahMusik2");
+        }
     }
 
     // Update is called once per frame
