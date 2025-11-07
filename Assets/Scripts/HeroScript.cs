@@ -5,10 +5,14 @@ using UnityEngine;
 public class HeroScript : MonoBehaviour
 {
     GameObject objCamera;
+
+    private AudioSource sfxFootstepSource;
+    private bool isMoving = false;
     // Start is called before the first frame update
     void Start()
     {
         objCamera = transform.Find("Main Camera").gameObject;
+        sfxFootstepSource = GameObject.Find("sfxFootstep").gameObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,5 +39,22 @@ public class HeroScript : MonoBehaviour
 
         transform.Translate(new Vector3(0, 0, v) * Time.deltaTime * 3f);
         transform.Rotate(new Vector3(0, h, 0) * 10f);
+
+        if (h != 0 || v != 0)
+        {
+            if (!isMoving)
+            {
+                isMoving = true;
+                sfxFootstepSource.Play();
+            }
+        }
+        else
+        {
+            if (isMoving)
+            {
+                isMoving = false;
+                sfxFootstepSource.Stop();
+            }
+        }
     }
 }

@@ -7,8 +7,8 @@ public class CameraScript : MonoBehaviour
     [SerializeField] AudioSource sumberSuara;
     [SerializeField] AudioClip clipMusik;
     [SerializeField] AudioClip clipMusik2;
+    [SerializeField] AudioClip footstep;
 
-    GameObject objCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -40,5 +40,10 @@ public class CameraScript : MonoBehaviour
 
         sumberSuara.clip = clipMusik;
         sumberSuara.Play();
+    }
+
+    public void playFootstep()
+    {
+        sumberSuara.PlayOneShot(footstep, 0.5f);
     }
 }
