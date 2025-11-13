@@ -23,7 +23,7 @@ public class CanvasScript : MonoBehaviour
     void selesaianim()
     {
         Debug.Log("selesai sudah animasinya");
-        transform.Find("Panel").Find("bground").GetComponent<Image>().color = Color.yellow;
+        // transform.Find("Panel").Find("bground").GetComponent<Image>().color = Color.yellow;
     }
 
     // Update is called once per frame
