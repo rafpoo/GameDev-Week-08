@@ -7,6 +7,8 @@ public class Gun : MonoBehaviour
     public GameObject[] objWeapon;
     private int senjataAktif = 0;
     public GameObject[] objMuzzleFlash;
+    [SerializeField] GameObject objBulletHole;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,7 @@ public class Gun : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             shakingShootingAndFlash();
+            tampilRaycast();
         }
 
         // Reload
@@ -97,5 +100,23 @@ public class Gun : MonoBehaviour
 
         objFlash.transform.parent = GameObject.Find("tempatFlash").transform;
         Destroy(objFlash, 0.1f);
+    }
+
+    void tampilRaycast()
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.tag == "Enemy")
+            {
+                Instantiate(objBulletHole, hit.point, Quaternion.identity);
+            }
+        }
+        else
+        {
+            print("I'm looking at nothing");
+        }
     }
 }
