@@ -6,6 +6,7 @@ public class Gun : MonoBehaviour
 {
     public GameObject[] objWeapon;
     private int senjataAktif = 0;
+    public GameObject[] objMuzzleFlash;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,5 +52,50 @@ public class Gun : MonoBehaviour
                 gantiSenjata(0);
             }
         }
+
+        // menembak
+        if (Input.GetMouseButton(0))
+        {
+            shakingShootingAndFlash();
+        }
+
+        // Reload
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameObject.Find("FpsCharacterPrefab")
+                .GetComponent<Animator>()
+                .SetBool("reloading", true);
+
+            Invoke("selesaiReload", 0.5f);
+        }
+    }
+
+    void selesaiReload()
+    {
+        GameObject.Find("FpsCharacterPrefab")
+            .GetComponent<Animator>()
+            .SetBool("reloading", false);
+    }
+
+    void shakingShootingAndFlash()
+    {
+        Vector3 pos = GameObject.Find("Player").transform.position;
+        pos.x -= (Random.value - 0.5f) * 0.5f;
+        pos.y -= (Random.value - 0.5f) * 0.5f;
+        pos.z -= 0.05f;
+        GameObject.Find("Player").transform.position = pos;
+
+        // Flash saat menembak
+        int randFlash = Random.Range(0, objMuzzleFlash.Length);
+
+        Vector3 posFlash = GameObject.Find("tempatFlash").transform.position;
+        GameObject objFlash = Instantiate(
+            objMuzzleFlash[randFlash],
+            posFlash,
+            transform.rotation
+        ) as GameObject;
+
+        objFlash.transform.parent = GameObject.Find("tempatFlash").transform;
+        Destroy(objFlash, 0.1f);
     }
 }

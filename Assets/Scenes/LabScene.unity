@@ -629,6 +629,12 @@ MonoBehaviour:
   objWeapon:
   - {fileID: 167390, guid: d263be518b43c45958a9fabf6650fd2d, type: 3}
   - {fileID: 142272, guid: 52d7c5ee3e0cf43d9b5aab3e5df17e7d, type: 3}
+  objMuzzleFlash:
+  - {fileID: 199458, guid: 51b76f616384d4946bed4ecc9a6c2c3e, type: 3}
+  - {fileID: 199458, guid: 487eef9aff9d0f543836d5af5ab26430, type: 3}
+  - {fileID: 199458, guid: 7b6a7e40bd9ccc0489274923930761c7, type: 3}
+  - {fileID: 199458, guid: 29d86feb88bf925428f9d7de6d4b401f, type: 3}
+  - {fileID: 199458, guid: 4aa4c63f0f9d6a84dbaeed6b9caeca80, type: 3}
 --- !u!1 &1187600012
 GameObject:
   m_ObjectHideFlags: 0
