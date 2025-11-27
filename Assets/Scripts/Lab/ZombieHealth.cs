@@ -8,13 +8,12 @@ public class ZombieHealth : MonoBehaviour
 
     public Animator anim;
 
-    private Rigidbody rb;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -38,7 +37,5 @@ public class ZombieHealth : MonoBehaviour
         anim.SetBool("IsDead", true);
         // Destroy(gameObject);
         GetComponent<Collider>().enabled = false;
-        rb.isKinematic = true;
-        rb.useGravity = false;
     }
 }

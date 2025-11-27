@@ -23,15 +23,15 @@ public class GridManager : MonoBehaviour
     void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
-        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 
+        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2
                                                     - Vector3.forward * gridWorldSize.y / 2;
 
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                Vector3 worldPoint = worldBottomLeft 
-                                    + Vector3.right * (x * nodeDiameter + nodeRadius) 
+                Vector3 worldPoint = worldBottomLeft
+                                    + Vector3.right * (x * nodeDiameter + nodeRadius)
                                     + Vector3.forward * (y * nodeDiameter + nodeRadius);
 
                 bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, obstacleMask));
@@ -76,20 +76,25 @@ public class GridManager : MonoBehaviour
     }
 
     public List<Node> path;
+    public Node[,] Grid => grid;
     public void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
         if (grid != null)
         {
+            float gizmoNodeDiameter = nodeRadius * 2;
+
             foreach (Node n in grid)
             {
                 Gizmos.color = (n.walkable) ? Color.white : Color.red;
                 if (path != null && path.Contains(n)) Gizmos.color = Color.cyan;
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
+
+                Gizmos.DrawCube(n.worldPosition, Vector3.one * (gizmoNodeDiameter - 0.1f));
             }
         }
     }
+
 }
 
 public class Node
