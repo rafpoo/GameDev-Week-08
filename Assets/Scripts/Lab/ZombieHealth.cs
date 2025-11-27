@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ZombieHealth : MonoBehaviour
+{
+    public float health = 100f;
+
+    public Animator anim;
+
+    private Rigidbody rb;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        health -= dmg;
+
+        if (health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        anim.SetBool("IsDead", true);
+        // Destroy(gameObject);
+        GetComponent<Collider>().enabled = false;
+        rb.isKinematic = true;
+        rb.useGravity = false;
+    }
+}
