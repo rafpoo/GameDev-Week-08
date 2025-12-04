@@ -8,6 +8,7 @@ public class HeroWeek13 : MonoBehaviour
     GameObject cam;
     float panjangRay = 10f;
     float rotasiVertikal = 0;
+    Canvas cvsCrosshair;
     // Start is called before the first frame update
     private void Start()
     {
@@ -15,6 +16,9 @@ public class HeroWeek13 : MonoBehaviour
         cam = GameObject.Find("Main Camera");
 
         cam.transform.position = transform.Find("ObjSorot").position;
+
+        cvsCrosshair = GameObject.Find("CanvasCrosshair").GetComponent<Canvas>();
+        cvsCrosshair.enabled = false;
     }
 
     // Update is called once per frame
@@ -42,12 +46,14 @@ public class HeroWeek13 : MonoBehaviour
         {
             anim.SetBool("IsAim", true);
             cam.transform.position = transform.Find("AimSorot").position;
+            cvsCrosshair.enabled = true;
         }
 
         if (Input.GetMouseButtonUp(1))
         {
             anim.SetBool("IsAim", false);
             cam.transform.position = transform.Find("ObjSorot").position;
+            cvsCrosshair.enabled = false;
         }
 
         if (anim.GetBool("IsAim") == true)
