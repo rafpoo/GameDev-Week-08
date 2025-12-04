@@ -31,7 +31,7 @@ public class HeroWeek13 : MonoBehaviour
         // gerakan position
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        transform.Translate(new Vector3(h, 0, v) * Time.deltaTime);
+        transform.Translate(new Vector3(h, 0, v) * Time.deltaTime * 10f);
 
         if (h != 0 || v != 0)
         {

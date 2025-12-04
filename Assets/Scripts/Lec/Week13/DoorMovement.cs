@@ -5,10 +5,23 @@ using UnityEngine;
 public class DoorMovement : MonoBehaviour
 {
     HingeJoint joint;
+
+    private bool isInvoked = false;
     // Start is called before the first frame update
     void Start()
     {
         joint = GetComponent<HingeJoint>();
+
+        JointSpring spring = joint.spring;
+        spring.spring = 10f;   // kekuatan pegas
+        spring.damper = 2f;    // redaman
+        joint.spring = spring;
+
+        JointMotor motor = joint.motor;
+        motor.force = 50f;     // kekuatan motor
+        motor.targetVelocity = 100f; // kecepatan buka
+        joint.motor = motor;
+
     }
 
 
@@ -24,6 +37,7 @@ public class DoorMovement : MonoBehaviour
             if (Mathf.Abs(angle) >= 80)
             {
                 Invoke("DelayTutupOtomatis", 1f);
+                isInvoked = true;
             }
         }
         else
@@ -35,6 +49,7 @@ public class DoorMovement : MonoBehaviour
                 transform.localEulerAngles = rot;
                 joint.useMotor = false;
                 joint.useSpring = false;
+                isInvoked = false;
             }
         }
     }
@@ -47,7 +62,7 @@ public class DoorMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.name == "hero")
+        if (collision.transform.name == "hero" || collision.gameObject.tag == "enemy")
         {
             joint.useMotor = true;
             joint.useSpring = false;
