@@ -64,23 +64,23 @@ public class HeroWeek13 : MonoBehaviour
 
             Camera.main.transform.localEulerAngles = new Vector3(-rotasiVertikal, 0, 0);
 
-            // raycastingh
-            Ray ray = new Ray(Camera.main.transform.position, transform.forward);
-            Debug.DrawRay(Camera.main.transform.position, transform.forward * panjangRay, Color.red);
+            // // raycastingh
+            // Ray ray = new Ray(Camera.main.transform.position, transform.forward);
+            // Debug.DrawRay(Camera.main.transform.position, transform.forward * panjangRay, Color.red);
 
-            RaycastHit hit;
-            bool isRayHit = Physics.Raycast(ray, out hit, panjangRay);
-            if (isRayHit)
-            {
-                Debug.Log("Kena: " + hit.collider.tag);
-                if (hit.collider.tag == "musuh")
-                {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        hit.collider.SendMessage("MusuhKena");
-                    }
-                }
-            }
+            // RaycastHit hit;
+            // bool isRayHit = Physics.Raycast(ray, out hit, panjangRay);
+            // if (isRayHit)
+            // {
+            //     Debug.Log("Kena: " + hit.collider.tag);
+            //     if (hit.collider.tag == "enemy")
+            //     {
+            //         if (Input.GetMouseButtonDown(0))
+            //         {
+            //             hit.collider.SendMessage("MusuhKena");
+            //         }
+            //     }
+            // }
         }
     }
 }
